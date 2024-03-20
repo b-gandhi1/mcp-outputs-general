@@ -19,12 +19,26 @@ trim1 = int(0.5*len(fib_dat_exp1))
 fib_dat_exp1 = fib_dat_exp1[12:trim1]
 fib_dat_gnd1 = pd.read_csv("rotX/fibrescope/fib1euler.csv", delimiter=",", usecols=["roll_x"]) 
 fib_dat_gnd1 = fib_dat_gnd1[12:trim1]
+max_gnd1 = np.rad2deg(np.max(fib_dat_gnd1))
+min_gnd1 = np.rad2deg(np.min(fib_dat_gnd1))
+med_gnd1 = np.rad2deg(np.median(fib_dat_gnd1))
+# mid_gnd1 = (max_gnd1 + min_gnd1) / 2 # rejected. median being used instead. small variation between the two.
+# print('max, min, med, mid: ', max_gnd1, min_gnd1, med_gnd1, mid_gnd1)
+print('rot: max, min, med: ', max_gnd1, min_gnd1, med_gnd1)
+print('rot deviations: ', max_gnd1 - med_gnd1, med_gnd1 - min_gnd1)
 # movement 2
 fib_dat_exp2 = pd.read_csv("transZ/Tz_raw_experimental_results_ALL.csv", delimiter=",", usecols=["fib1"])
 trim2 = int(0.5*len(fib_dat_exp2))
 fib_dat_exp2 = fib_dat_exp2[10:trim2]
 fib_dat_gnd2 = pd.read_csv("transZ/ground_truth/fibrescope/fibrescope1.csv", delimiter=",", usecols=["Franka Tz"]) * (-1)
 fib_dat_gnd2 = fib_dat_gnd2[10:trim2]
+max_gnd2 = np.max(fib_dat_gnd2) * 1e3
+min_gnd2 = np.min(fib_dat_gnd2) * 1e3
+med_gnd2 = np.median(fib_dat_gnd2) * 1e3
+# mid_gnd2 = (max_gnd2 + min_gnd2) / 2 # rejected. median being used instead. small variation between the two. 
+# print('max, min, med, mid: ', max_gnd2, min_gnd2, med_gnd2, mid_gnd2)
+print('z: max, min, med: ', max_gnd2, min_gnd2, med_gnd2)
+print('z deviations: ', max_gnd2 - med_gnd2, med_gnd2 - min_gnd2)
 
 # normalize values
 
